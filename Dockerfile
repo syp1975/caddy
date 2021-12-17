@@ -6,11 +6,12 @@ RUN xcaddy build \
     --with github.com/abiosoft/caddy-exec \
     --with github.com/greenpau/caddy-auth-portal \
     --with github.com/greenpau/caddy-authorize \
-    --with github.com/caddy-dns/duckdns
-
+    --with github.com/caddy-dns/duckdns && \
+	
 FROM caddy:${CADDY_VERSION}-alpine
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
-CMD ["caddy", "docker-proxy"]
+RUN	/usr/bin/caddy list-modules -packages -versions > /config/caddy/list-modules.txt
 
+CMD ["caddy", "docker-proxy"]

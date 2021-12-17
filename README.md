@@ -1,15 +1,18 @@
 # Caddy v2 with docker proxy and some other plugins
-Packaged as a docker image: `ghcr.io/syp1975/caddy`
+Packaged as a docker image: `ghcr.io/syp1975/caddy`.
+
+I use it to proxy containerized apps to my [Duck DNS](https://www.duckdns.org) subdomain trough a secure connection with a wildcard certificate issued by [Let's Encrypt](https://letsencrypt.org).
+
 Image is automatically rebuilt when the base image `caddy:2-builder` or plugins are updated.
 
-|Plugin|Description|
+|Component|Description|
 |---|---|
+|[caddy](https://caddyserver.com)|Open source web server|
 |[caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy)|Caddy as a reverse proxy for Docker|
 |[duckdns](https://github.com/caddy-dns/duckdns)|Duck DNS module for Caddy|
-|[caddy-auth-portal](https://github.com/greenpau/caddy-auth-portal)|Authentication Plugin for Caddy v2 implementing Form-Based, Basic, Local, LDAP, OpenID Connect, OAuth 2.0, SAML Authentication.|
+|[caddy-auth-portal](https://github.com/greenpau/caddy-auth-portal)|Authentication Plugin for Caddy v2|
 |[caddy-authorize](https://github.com/greenpau/caddy-authorize)|Authorization Plugin for Caddy v2 (JWT/PASETO)|
 |[caddy-exec](https://github.com/abiosoft/caddy-exec)|Caddy v2 module for running one-off commands|
-<br/>
 
 ### Run caddy server
 ```
