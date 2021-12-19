@@ -40,5 +40,4 @@ docker run --name app_name -d \
 And your application will be proxied at `https://app_name.your_sub_domain.duckdns.org`
 
 ### TODO
-- Finish automatic image building action
 - Configure authentication
