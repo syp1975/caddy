@@ -27,7 +27,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Build Caddy
-        uses: ${{github.action_path}}/build-caddy.yml@master
+        uses: syp1975/caddy-docker/.github/workflows/build-caddy.yml@master
 
       - name: Test if an update is needed
         run: |
