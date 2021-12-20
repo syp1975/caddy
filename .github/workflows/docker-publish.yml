@@ -37,6 +37,8 @@ jobs:
             arch: 'arm'
             variant: '6'
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Set up Golang environment
         uses: actions/setup-go@v2
         with:
@@ -56,14 +58,10 @@ jobs:
             --with github.com/greenpau/caddy-auth-portal \
             --with github.com/greenpau/caddy-authorize \
             --with github.com/caddy-dns/duckdns
-      - name: Test if an update is needed
-        run: |
-          ./build/linux/amd64/caddy list-modules -packages -versions > ./list-modules.txt
-          ! git diff --exit-code list-modules.txt
       - name: Push repository
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: ${{github.action}} (${{github.event_name}})
+          commit_message: [${{github.action}}:${{github.job}}] (${{github.event_name}})
           branch: master
 
   docker:
@@ -77,6 +75,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Test if an update is needed
+        run: |
+          ./build/linux/amd64/caddy list-modules -packages -versions > ./list-modules.txt
+          ! git diff --exit-code list-modules.txt
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v1
