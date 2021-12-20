@@ -22,7 +22,7 @@ jobs:
           - path: 'linux/arm64/v8'
             os: 'linux'
             arch: 'arm64'
-            variant: '8'
+            variant: ''
           - path: 'linux/arm/v7'
             os: 'linux'
             arch: 'arm'
