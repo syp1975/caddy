@@ -1,4 +1,4 @@
-name: Build and push
+name: Build and push docker images
 
 on:
   workflow_dispatch:
@@ -27,19 +27,11 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Build Caddy
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          load: true
-          tags: ${{env.IMAGE_NAME}}:builder
-          target: builder
+        uses: ${{github.action_path}}/build-caddy.yml@master
 
       - name: Test if an update is needed
-        id: test
         run: |
-          docker container create --name builder${{github.run_attempt}} ${{env.IMAGE_NAME}}:builder
-          docker cp builder${{github.run_attempt}}:/list-modules.txt .
-          docker rm builder${{github.run_attempt}}
+          ./build/linux/amd64/caddy list-modules -packages -versions > ./list-modules.txt
           ! git diff --exit-code list-modules.txt
 
       - name: Install cosign
