@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: ${{matrix.platform}}
+          path: build
 
   docker:
     needs: caddy
