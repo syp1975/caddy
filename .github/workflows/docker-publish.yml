@@ -13,7 +13,6 @@ env:
 jobs:
   caddy:
     runs-on: ubuntu-latest
-    concurrency: upload-build-artifact
     strategy:
       matrix:
         include: 
