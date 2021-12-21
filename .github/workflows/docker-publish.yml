@@ -50,7 +50,7 @@ jobs:
           GOARCH: ${{matrix.arch}}
           GOARM: ${{matrix.variant}}
         run: |-
-          xcaddy build --output ./${{matrix.path}}/caddy \
+          xcaddy build --output ./build/${{matrix.platform}}/caddy \
             --with github.com/lucaslorentz/caddy-docker-proxy/plugin \
             --with github.com/abiosoft/caddy-exec \
             --with github.com/greenpau/caddy-auth-portal \
@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: ${{matrix.path}}
+          path: ${{matrix.platform}}
 
   docker:
     needs: caddy
