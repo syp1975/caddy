@@ -61,7 +61,7 @@ jobs:
       - name: Push repository
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: test
+          commit_message: [${{github.action}}:${{github.job}}] ${{github.event_name}}
           branch: master
 
   docker:
