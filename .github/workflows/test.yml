@@ -42,15 +42,6 @@ jobs:
           push: true
           tags: ghcr.io/syp1975/caddy:latest
 
-      - name: Build and push docker image (windows)
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile.windows
-          platforms: windows/amd64
-          push: true
-          tags: ghcr.io/syp1975/caddy:latest
-
       - name: Sign the published Docker image
         env:
           COSIGN_EXPERIMENTAL: "true"
